@@ -77,9 +77,9 @@ function OnlineSiteVisit() {
         <div className="curve-timeline">
           <div className="curve-timeline__line">
             <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-              <path d={CURVE_PATH} fill="none" stroke="#16213e" strokeWidth="7" strokeLinecap="round" />
+              <path d={CURVE_PATH} fill="none" stroke="#5b7290" strokeWidth="7" strokeLinecap="round" />
               {NODES.map(({ x, y }) => (
-                <circle key={`${x}-${y}`} cx={x} cy={y} r="7" fill="#fff" stroke="#16213e" strokeWidth="4" />
+                <circle key={`${x}-${y}`} cx={x} cy={y} r="7" fill="#fff" stroke="#5b7290" strokeWidth="4" />
               ))}
             </svg>
           </div>
