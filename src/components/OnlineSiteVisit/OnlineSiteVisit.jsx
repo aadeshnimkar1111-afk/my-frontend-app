@@ -44,6 +44,19 @@ const STEPS = [
   },
 ]
 
+// One smooth C-curve (single cubic bezier) that bulges right in the middle,
+// in a 0-100 viewBox. Node positions are sampled along the same curve so
+// they sit exactly on it.
+const CURVE_PATH = 'M25,8.33 C95,30 95,70 25,91.67'
+const NODES = [
+  { x: 25, y: 8.33 },
+  { x: 58.6, y: 23.24 },
+  { x: 75.4, y: 40.79 },
+  { x: 75.4, y: 59.21 },
+  { x: 58.6, y: 76.76 },
+  { x: 25, y: 91.67 },
+]
+
 function OnlineSiteVisit() {
   const [modalOpen, setModalOpen] = useState(false)
 
@@ -52,30 +65,39 @@ function OnlineSiteVisit() {
       <h2 className="site-visit__title">Online Site Visit - 6 Simple Steps</h2>
 
       <div className="site-visit__layout">
-        <div className="site-visit__left">
-          <button className="site-visit__badge" onClick={() => setModalOpen(true)}>
-            Online Site Visit
-          </button>
+        <button className="site-visit__badge" onClick={() => setModalOpen(true)}>
+          Online Site Visit
+        </button>
 
-          <div className="site-visit__image-placeholder">
-            <ImageIcon size={32} />
-            <span>Image coming soon</span>
-          </div>
+        <div className="site-visit__image-placeholder">
+          <ImageIcon size={32} />
+          <span>Image coming soon</span>
         </div>
 
-        <div className="site-visit__timeline">
-          {STEPS.map(({ icon: Icon, title, description }, index) => (
-            <div className="timeline-step" key={title}>
-              <span className="timeline-step__node">
-                <Icon size={20} />
-              </span>
-              {index < STEPS.length - 1 && <span className="timeline-step__line" />}
-              <div className="timeline-step__card">
-                <h4>{title}</h4>
-                <p>{description}</p>
+        <div className="curve-timeline">
+          <div className="curve-timeline__line">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d={CURVE_PATH} fill="none" stroke="#16213e" strokeWidth="7" strokeLinecap="round" />
+              {NODES.map(({ x, y }) => (
+                <circle key={`${x}-${y}`} cx={x} cy={y} r="7" fill="#fff" stroke="#16213e" strokeWidth="4" />
+              ))}
+            </svg>
+          </div>
+
+          <div className="curve-timeline__cards">
+            {STEPS.map(({ icon: Icon, title, description }) => (
+              <div className="curve-card-row" key={title}>
+                <span className="curve-card-row__dash" />
+                <span className="curve-card-row__icon">
+                  <Icon size={20} />
+                </span>
+                <div className="curve-card-row__card">
+                  <h4>{title}</h4>
+                  <p>{description}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
