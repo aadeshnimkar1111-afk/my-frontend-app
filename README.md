@@ -1,16 +1,47 @@
-# React + Vite
+# MDN Salesforce - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A real estate landing page built with React, following a component-based structure so each section (navbar, hero, footer, etc.) can be worked on independently.
 
-Currently, two official plugins are available:
+## What's built so far
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Navbar** - city selector, search bar, and a "Live Map" button that opens a map for the searched location (using OpenStreetMap)
+- **Login / Register modal** - opens when clicking "Sign in"
+- **Slide-in menu** - hamburger icon opens a side menu with Home/About/Contact links
+- **Responsive layout** - works on mobile, tablet and desktop (tested from 320px up to full desktop width)
 
-## React Compiler
+## Running it locally
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+npm install
+npm run dev
+```
 
-## Expanding the Oxlint configuration
+Opens at `http://localhost:5173`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Building for production
+
+```
+npm run build
+```
+
+This creates a `dist` folder with the final HTML/CSS/JS files, ready to upload to any hosting.
+
+## Folder structure
+
+Each component lives in its own folder with its `.jsx` and `.css` file together:
+
+```
+src/components/
+  Navbar/
+  Hero/
+  Footer/
+  AuthModal/
+  MapModal/
+  LocationMap/
+```
+
+## Tech used
+
+- React + Vite
+- lucide-react (icons)
+- OpenStreetMap / Nominatim for the map search (free, no API key needed)
