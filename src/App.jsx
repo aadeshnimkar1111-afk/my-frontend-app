@@ -1,23 +1,16 @@
-import Navbar from './components/Navbar/Navbar'
-import Hero from './components/Hero/Hero'
-import PropertiesCarousel from './components/PropertiesCarousel/PropertiesCarousel'
-import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs'
-import ReelsCarousel from './components/ReelsCarousel/ReelsCarousel'
-import OnlineSiteVisit from './components/OnlineSiteVisit/OnlineSiteVisit'
-import Footer from './components/Footer/Footer'
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage/HomePage'
+import ReelsPage from './pages/ReelsPage/ReelsPage'
 import { WishlistProvider } from './context/WishlistContext'
 import './App.css'
 
 function App() {
   return (
     <WishlistProvider>
-      <Navbar />
-      <Hero />
-      <WhyChooseUs />
-      <ReelsCarousel />
-      <OnlineSiteVisit />
-      <PropertiesCarousel />
-      <Footer />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/reels/:id" element={<ReelsPage />} />
+      </Routes>
     </WishlistProvider>
   )
 }

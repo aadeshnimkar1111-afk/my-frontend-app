@@ -1,24 +1,22 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Clapperboard, MapPin, Play } from 'lucide-react'
+import { REELS } from '../../data/reels'
 import './ReelsCarousel.css'
-
-// Placeholder data - admin will replace `thumbnail`/`videoUrl` with real reel content later.
-const LOCALITIES = [
-  { id: 1, name: 'Kharadi', reelCount: 24 },
-  { id: 2, name: 'Hadapsar', reelCount: 7 },
-  { id: 3, name: 'Manjari', reelCount: 4 },
-  { id: 4, name: 'Wagholi', reelCount: 7 },
-  { id: 5, name: 'Keshav Nagar', reelCount: 4 },
-  { id: 6, name: 'Ravet', reelCount: 9 },
-  { id: 7, name: 'Chinchwad', reelCount: 4 },
-  { id: 8, name: 'Dhanori', reelCount: 7 },
-  { id: 9, name: 'Mundhwa', reelCount: 11 },
-]
 
 const VISIBLE_RANGE = 4
 
 function ReelsCarousel() {
   const [activeIndex, setActiveIndex] = useState(4)
+  const navigate = useNavigate()
+
+  function handleCardClick(index, reel) {
+    if (index === activeIndex) {
+      navigate(`/reels/${reel.id}`)
+    } else {
+      setActiveIndex(index)
+    }
+  }
 
   return (
     <section className="reels" id="reels">
@@ -32,7 +30,7 @@ function ReelsCarousel() {
       </div>
 
       <div className="reels__stage">
-        {LOCALITIES.map((locality, index) => {
+        {REELS.map((reel, index) => {
           const offset = index - activeIndex
           if (Math.abs(offset) > VISIBLE_RANGE) return null
 
@@ -41,14 +39,14 @@ function ReelsCarousel() {
 
           return (
             <button
-              key={locality.id}
+              key={reel.id}
               className={`reel-card ${isActive ? 'is-active' : ''}`}
               style={{
                 transform: `translateX(${offset * 135}px) rotateY(${offset * -28}deg) scale(${1 - distance * 0.1})`,
                 opacity: 1 - distance * 0.2,
                 zIndex: 10 - distance,
               }}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => handleCardClick(index, reel)}
             >
               <div className="reel-card__thumbnail">
                 <span className="reel-card__brand">MDN</span>
@@ -56,9 +54,9 @@ function ReelsCarousel() {
                 <div className="reel-card__info">
                   <span className="reel-card__location">
                     <MapPin size={14} />
-                    {locality.name}
+                    {reel.locality}
                   </span>
-                  <span className="reel-card__count">{locality.reelCount} Reels</span>
+                  <span className="reel-card__count">{reel.views} views</span>
                 </div>
 
                 <span className="reel-card__play">
@@ -73,11 +71,11 @@ function ReelsCarousel() {
       </div>
 
       <div className="reels__dots">
-        {LOCALITIES.map((locality, index) => (
+        {REELS.map((reel, index) => (
           <button
-            key={locality.id}
+            key={reel.id}
             className={`reels__dot ${index === activeIndex ? 'is-active' : ''}`}
-            aria-label={`Show ${locality.name}`}
+            aria-label={`Show ${reel.locality}`}
             onClick={() => setActiveIndex(index)}
           />
         ))}
