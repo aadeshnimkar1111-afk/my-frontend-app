@@ -94,7 +94,10 @@ function Navbar() {
       </div>
 
       <div className="navbar__actions">
-        <button className="navbar__reels">
+        <button
+          className="navbar__reels"
+          onClick={() => document.getElementById('reels')?.scrollIntoView({ behavior: 'smooth' })}
+        >
           <span className="navbar__reels-badge">NEW</span>
           <Play size={16} fill="currentColor" />
           <span className="navbar__label">Reels</span>

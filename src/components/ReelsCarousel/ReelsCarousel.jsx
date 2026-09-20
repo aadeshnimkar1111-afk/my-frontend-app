@@ -21,7 +21,7 @@ function ReelsCarousel() {
   const [activeIndex, setActiveIndex] = useState(4)
 
   return (
-    <section className="reels">
+    <section className="reels" id="reels">
       <div className="reels__heading">
         <div className="reels__eyebrow">
           <Clapperboard size={16} />
