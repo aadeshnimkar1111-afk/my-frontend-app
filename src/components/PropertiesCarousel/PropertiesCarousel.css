@@ -103,6 +103,11 @@
   align-items: center;
   justify-content: center;
   color: #fff;
+  cursor: pointer;
+}
+
+.property-card__name {
+  cursor: pointer;
 }
 
 .property-card__wishlist {

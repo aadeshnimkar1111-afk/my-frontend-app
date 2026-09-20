@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Building2,
   CalendarDays,
@@ -12,72 +13,13 @@ import {
   Ruler,
 } from 'lucide-react'
 import { useWishlist } from '../../context/WishlistContext'
+import { PROPERTIES } from '../../data/properties'
 import './PropertiesCarousel.css'
-
-// Placeholder data - admin will add/edit real projects here (or from a CMS later).
-// `image` is left blank on purpose; a project photo can be dropped in per entry.
-const PROPERTIES = [
-  {
-    id: 1,
-    name: 'Godrej Ivara',
-    developer: 'Godrej Properties',
-    priceRange: '₹1.29 Cr - 3.19 Cr',
-    areaRange: '729 - 1580 sqft',
-    locality: 'Kharadi',
-    possession: 'Aug 2032',
-    image: null,
-    units: [
-      { bhk: '2BHK', sqft: 729, price: '₹1.29 Cr' },
-      { bhk: '3BHK', sqft: 889, price: '₹1.63 Cr' },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Lodha Sylvan',
-    developer: 'Lodha Group',
-    priceRange: '₹1.15 Cr - 2.21 Cr',
-    areaRange: '836 - 1428 sqft',
-    locality: 'Hinjewadi',
-    possession: 'Dec 2030',
-    image: null,
-    units: [
-      { bhk: '2BHK', sqft: 836, price: '₹1.15 Cr' },
-      { bhk: '2.5BHK', sqft: 955, price: '₹1.45 Cr' },
-    ],
-  },
-  {
-    id: 3,
-    name: 'Kolte Patil Echoes',
-    developer: 'Kolte Patil Developers',
-    priceRange: '₹85.00 Lacs - 1.06 Cr',
-    areaRange: '838 - 1086 sqft',
-    locality: 'Punawale',
-    possession: 'Dec 2029',
-    image: null,
-    units: [
-      { bhk: '2BHK', sqft: 838, price: '₹85.00 Lac' },
-      { bhk: '2BHK', sqft: 840, price: '₹85.00 Lac' },
-    ],
-  },
-  {
-    id: 4,
-    name: 'Shapoorji Parkwest',
-    developer: 'Shapoorji Pallonji',
-    priceRange: '₹91.00 Lacs - 1.8 Cr',
-    areaRange: '650 - 1250 sqft',
-    locality: 'Hinjewadi',
-    possession: 'Mar 2031',
-    image: null,
-    units: [
-      { bhk: '1BHK', sqft: 650, price: '₹91.00 Lac' },
-      { bhk: '2BHK', sqft: 920, price: '₹1.25 Cr' },
-    ],
-  },
-]
 
 function PropertiesCarousel() {
   const trackRef = useRef(null)
   const { isWishlisted, toggleWishlist } = useWishlist()
+  const navigate = useNavigate()
 
   function scroll(direction) {
     trackRef.current?.scrollBy({ left: direction * 340, behavior: 'smooth' })
@@ -109,12 +51,18 @@ function PropertiesCarousel() {
       <div className="properties__track" ref={trackRef}>
         {PROPERTIES.map((property) => (
           <article className="property-card" key={property.id}>
-            <div className="property-card__image">
+            <div
+              className="property-card__image"
+              onClick={() => navigate(`/project/${property.id}`)}
+            >
               <Building2 size={40} />
               <button
                 className={`property-card__wishlist ${isWishlisted(property.id) ? 'is-active' : ''}`}
                 aria-label="Save"
-                onClick={() => toggleWishlist(property.id)}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  toggleWishlist(property.id)
+                }}
               >
                 <Heart size={16} fill={isWishlisted(property.id) ? 'currentColor' : 'none'} />
               </button>
@@ -125,7 +73,9 @@ function PropertiesCarousel() {
 
             <div className="property-card__body">
               <div className="property-card__top-row">
-                <h3>{property.name}</h3>
+                <h3 className="property-card__name" onClick={() => navigate(`/project/${property.id}`)}>
+                  {property.name}
+                </h3>
                 <span className="property-card__price">{property.priceRange}</span>
               </div>
 
@@ -162,7 +112,7 @@ function PropertiesCarousel() {
               </div>
 
               <div className="property-card__actions">
-                <button className="property-card__tour">
+                <button className="property-card__tour" onClick={() => navigate(`/project/${property.id}`)}>
                   <Laptop size={16} />
                   Tour
                 </button>
