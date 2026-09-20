@@ -121,6 +121,10 @@
   cursor: pointer;
 }
 
+.property-card__wishlist.is-active {
+  color: #ff4757;
+}
+
 .property-card__play {
   position: absolute;
   bottom: 12px;

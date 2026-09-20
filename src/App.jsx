@@ -5,19 +5,20 @@ import WhyChooseUs from './components/WhyChooseUs/WhyChooseUs'
 import ReelsCarousel from './components/ReelsCarousel/ReelsCarousel'
 import OnlineSiteVisit from './components/OnlineSiteVisit/OnlineSiteVisit'
 import Footer from './components/Footer/Footer'
+import { WishlistProvider } from './context/WishlistContext'
 import './App.css'
 
 function App() {
   return (
-    <>
+    <WishlistProvider>
       <Navbar />
       <Hero />
-      <PropertiesCarousel />
       <WhyChooseUs />
       <ReelsCarousel />
       <OnlineSiteVisit />
+      <PropertiesCarousel />
       <Footer />
-    </>
+    </WishlistProvider>
   )
 }
 

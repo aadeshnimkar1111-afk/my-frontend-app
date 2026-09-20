@@ -167,6 +167,26 @@
   cursor: pointer;
 }
 
+.navbar__icon-btn.is-active {
+  color: #ff4757;
+}
+
+.navbar__notif-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background-color: #ff4757;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .navbar__signin {
   display: flex;
   align-items: center;

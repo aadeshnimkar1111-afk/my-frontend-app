@@ -3,6 +3,7 @@ import { ChevronDown, Search, Heart, User, Menu, Play, X } from 'lucide-react'
 import mdnLogo from '../../assets/mdn-logo.png'
 import AuthModal from '../AuthModal/AuthModal'
 import MapModal from '../MapModal/MapModal'
+import { useWishlist } from '../../context/WishlistContext'
 import './Navbar.css'
 
 const CITIES = ['Pune', 'Mumbai', 'Bangalore', 'Delhi NCR', 'Hyderabad']
@@ -24,6 +25,7 @@ function Navbar() {
   const [searchText, setSearchText] = useState('')
   const [mapQuery, setMapQuery] = useState(null)
   const cityRef = useRef(null)
+  const { wishlist } = useWishlist()
 
   function openMapFor(query) {
     const trimmed = query.trim()
@@ -98,8 +100,12 @@ function Navbar() {
           <span className="navbar__label">Reels</span>
         </button>
 
-        <button className="navbar__icon-btn" aria-label="Wishlist">
-          <Heart size={20} />
+        <button
+          className={`navbar__icon-btn ${wishlist.length > 0 ? 'is-active' : ''}`}
+          aria-label="Wishlist"
+        >
+          <Heart size={20} fill={wishlist.length > 0 ? 'currentColor' : 'none'} />
+          {wishlist.length > 0 && <span className="navbar__notif-badge">{wishlist.length}</span>}
         </button>
 
         <button className="navbar__signin" onClick={() => setAuthOpen(true)}>

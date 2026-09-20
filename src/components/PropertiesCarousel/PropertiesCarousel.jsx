@@ -11,6 +11,7 @@ import {
   PlayCircle,
   Ruler,
 } from 'lucide-react'
+import { useWishlist } from '../../context/WishlistContext'
 import './PropertiesCarousel.css'
 
 // Placeholder data - admin will add/edit real projects here (or from a CMS later).
@@ -76,6 +77,7 @@ const PROPERTIES = [
 
 function PropertiesCarousel() {
   const trackRef = useRef(null)
+  const { isWishlisted, toggleWishlist } = useWishlist()
 
   function scroll(direction) {
     trackRef.current?.scrollBy({ left: direction * 340, behavior: 'smooth' })
@@ -109,8 +111,12 @@ function PropertiesCarousel() {
           <article className="property-card" key={property.id}>
             <div className="property-card__image">
               <Building2 size={40} />
-              <button className="property-card__wishlist" aria-label="Save">
-                <Heart size={16} />
+              <button
+                className={`property-card__wishlist ${isWishlisted(property.id) ? 'is-active' : ''}`}
+                aria-label="Save"
+                onClick={() => toggleWishlist(property.id)}
+              >
+                <Heart size={16} fill={isWishlisted(property.id) ? 'currentColor' : 'none'} />
               </button>
               <button className="property-card__play" aria-label="Play tour">
                 <PlayCircle size={22} />
