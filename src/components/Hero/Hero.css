@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  background: linear-gradient(180deg, #e8f0f7 0%, #dce8f2 55%, #16213e 55%, #16213e 100%);
+  background: linear-gradient(180deg, #e8f0f7 0%, #dce8f2 73%, #16213e 73%, #16213e 100%);
   padding: 48px 40px 140px;
   overflow: hidden;
 }
