@@ -1,9 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
   Building2,
   CalendarDays,
-  ChevronDown,
   Heart,
   Laptop,
   MapPin,
@@ -18,13 +17,31 @@ import Navbar from '../../components/Navbar/Navbar'
 import Footer from '../../components/Footer/Footer'
 import BookingWidget from '../../components/BookingWidget/BookingWidget'
 import MapModal from '../../components/MapModal/MapModal'
+import FilterDropdown from '../../components/FilterDropdown/FilterDropdown'
 import { useWishlist } from '../../context/WishlistContext'
 import { PROPERTIES, COMPANY_STATS } from '../../data/properties'
 import { DEVELOPERS } from '../../data/developers'
 import './DeveloperPage.css'
 
-const FILTERS = ['BHK', 'Budget', 'Down Payment', 'Possession']
 const TOGGLES = ['Top Developers', 'Litigation Free Projects', 'Hide Sold Out']
+
+const BUDGET_BUCKETS = [
+  { id: 'under-50l', label: 'Under ₹50 Lacs', min: 0, max: 50 },
+  { id: '50l-1cr', label: '₹50 Lacs - ₹1 Cr', min: 50, max: 100 },
+  { id: '1cr-2cr', label: '₹1 Cr - ₹2 Cr', min: 100, max: 200 },
+  { id: 'above-2cr', label: 'Above ₹2 Cr', min: 200, max: Infinity },
+]
+
+const DOWN_PAYMENT_BUCKETS = [
+  { id: 'under-10l', label: 'Under ₹10 Lacs', min: 0, max: 10 },
+  { id: '10-20l', label: '₹10 - ₹20 Lacs', min: 10, max: 20 },
+  { id: '20-40l', label: '₹20 - ₹40 Lacs', min: 20, max: 40 },
+  { id: 'above-40l', label: 'Above ₹40 Lacs', min: 40, max: Infinity },
+]
+
+function rangesOverlap(minA, maxA, minB, maxB) {
+  return minA <= maxB && maxA >= minB
+}
 
 function DeveloperPage() {
   const { slug } = useParams()
@@ -32,8 +49,43 @@ function DeveloperPage() {
   const { isWishlisted, toggleWishlist } = useWishlist()
   const [mapOpen, setMapOpen] = useState(false)
   const [activeToggles, setActiveToggles] = useState([])
+  const [openFilter, setOpenFilter] = useState(null)
+  const [bhkFilter, setBhkFilter] = useState([])
+  const [budgetFilter, setBudgetFilter] = useState([])
+  const [downPaymentFilter, setDownPaymentFilter] = useState([])
+  const [possessionFilter, setPossessionFilter] = useState([])
+  const filtersRef = useRef(null)
 
   const developer = DEVELOPERS.find((d) => d.slug === slug)
+  const developerProjects = useMemo(
+    () => PROPERTIES.filter((p) => p.developer === developer?.name),
+    [developer]
+  )
+
+  const bhkOptions = useMemo(() => {
+    const set = new Set()
+    developerProjects.forEach((p) => p.units.forEach((u) => set.add(u.bhk)))
+    return [...set].sort().map((bhk) => ({ id: bhk, label: bhk }))
+  }, [developerProjects])
+
+  const possessionOptions = useMemo(() => {
+    const set = new Set()
+    developerProjects.forEach((p) => {
+      const match = p.possession.match(/\d{4}/)
+      if (match) set.add(match[0])
+    })
+    return [...set].sort().map((year) => ({ id: year, label: year }))
+  }, [developerProjects])
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (filtersRef.current && !filtersRef.current.contains(e.target)) {
+        setOpenFilter(null)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   if (!developer) {
     return (
@@ -48,12 +100,53 @@ function DeveloperPage() {
     )
   }
 
-  const projects = PROPERTIES.filter((p) => p.developer === developer.name)
+  const projects = developerProjects.filter((property) => {
+    if (bhkFilter.length > 0 && !property.units.some((u) => bhkFilter.includes(u.bhk))) {
+      return false
+    }
+
+    if (
+      budgetFilter.length > 0 &&
+      !budgetFilter.some((id) => {
+        const bucket = BUDGET_BUCKETS.find((b) => b.id === id)
+        return rangesOverlap(property.minPriceLacs, property.maxPriceLacs, bucket.min, bucket.max)
+      })
+    ) {
+      return false
+    }
+
+    if (
+      downPaymentFilter.length > 0 &&
+      !downPaymentFilter.some((id) => {
+        const bucket = DOWN_PAYMENT_BUCKETS.find((b) => b.id === id)
+        const downPayment = Math.round(property.minPriceLacs * 0.2)
+        return downPayment >= bucket.min && downPayment < bucket.max
+      })
+    ) {
+      return false
+    }
+
+    if (possessionFilter.length > 0) {
+      const match = property.possession.match(/\d{4}/)
+      if (!match || !possessionFilter.includes(match[0])) return false
+    }
+
+    return true
+  })
 
   function toggleSwitch(name) {
     setActiveToggles((prev) =>
       prev.includes(name) ? prev.filter((t) => t !== name) : [...prev, name]
     )
+  }
+
+  function resetFilters() {
+    setBhkFilter([])
+    setBudgetFilter([])
+    setDownPaymentFilter([])
+    setPossessionFilter([])
+    setActiveToggles([])
+    setOpenFilter(null)
   }
 
   return (
@@ -87,14 +180,40 @@ function DeveloperPage() {
           </div>
         </div>
 
-        <div className="developer-page__filters">
-          {FILTERS.map((f) => (
-            <button key={f} className="developer-page__filter">
-              {f}
-              <ChevronDown size={14} />
-            </button>
-          ))}
-          <button className="developer-page__reset">
+        <div className="developer-page__filters" ref={filtersRef}>
+          <FilterDropdown
+            label="BHK"
+            options={bhkOptions}
+            selected={bhkFilter}
+            onChange={setBhkFilter}
+            isOpen={openFilter === 'bhk'}
+            onToggle={() => setOpenFilter(openFilter === 'bhk' ? null : 'bhk')}
+          />
+          <FilterDropdown
+            label="Budget"
+            options={BUDGET_BUCKETS}
+            selected={budgetFilter}
+            onChange={setBudgetFilter}
+            isOpen={openFilter === 'budget'}
+            onToggle={() => setOpenFilter(openFilter === 'budget' ? null : 'budget')}
+          />
+          <FilterDropdown
+            label="Down Payment"
+            options={DOWN_PAYMENT_BUCKETS}
+            selected={downPaymentFilter}
+            onChange={setDownPaymentFilter}
+            isOpen={openFilter === 'downpayment'}
+            onToggle={() => setOpenFilter(openFilter === 'downpayment' ? null : 'downpayment')}
+          />
+          <FilterDropdown
+            label="Possession"
+            options={possessionOptions}
+            selected={possessionFilter}
+            onChange={setPossessionFilter}
+            isOpen={openFilter === 'possession'}
+            onToggle={() => setOpenFilter(openFilter === 'possession' ? null : 'possession')}
+          />
+          <button className="developer-page__reset" onClick={resetFilters}>
             <RotateCcw size={14} />
             Reset
           </button>
@@ -143,10 +262,12 @@ function DeveloperPage() {
           </aside>
 
           <main className="developer-page__main">
-            <p className="developer-page__count">Showing {projects.length} of {projects.length} Projects</p>
+            <p className="developer-page__count">
+              Showing {projects.length} of {developerProjects.length} Projects
+            </p>
 
             {projects.length === 0 && (
-              <p className="developer-page__empty">No projects listed yet for this developer.</p>
+              <p className="developer-page__empty">No projects match these filters.</p>
             )}
 
             {projects.map((property) => (
