@@ -11,6 +11,7 @@ import {
   PlayCircle,
   RotateCcw,
   Ruler,
+  Search,
   SlidersHorizontal,
 } from 'lucide-react'
 import Navbar from '../../components/Navbar/Navbar'
@@ -54,6 +55,12 @@ function DeveloperPage() {
   const [budgetFilter, setBudgetFilter] = useState([])
   const [downPaymentFilter, setDownPaymentFilter] = useState([])
   const [possessionFilter, setPossessionFilter] = useState([])
+  const [appliedFilters, setAppliedFilters] = useState({
+    bhk: [],
+    budget: [],
+    downPayment: [],
+    possession: [],
+  })
   const filtersRef = useRef(null)
 
   const developer = DEVELOPERS.find((d) => d.slug === slug)
@@ -101,13 +108,16 @@ function DeveloperPage() {
   }
 
   const projects = developerProjects.filter((property) => {
-    if (bhkFilter.length > 0 && !property.units.some((u) => bhkFilter.includes(u.bhk))) {
+    if (
+      appliedFilters.bhk.length > 0 &&
+      !property.units.some((u) => appliedFilters.bhk.includes(u.bhk))
+    ) {
       return false
     }
 
     if (
-      budgetFilter.length > 0 &&
-      !budgetFilter.some((id) => {
+      appliedFilters.budget.length > 0 &&
+      !appliedFilters.budget.some((id) => {
         const bucket = BUDGET_BUCKETS.find((b) => b.id === id)
         return rangesOverlap(property.minPriceLacs, property.maxPriceLacs, bucket.min, bucket.max)
       })
@@ -116,8 +126,8 @@ function DeveloperPage() {
     }
 
     if (
-      downPaymentFilter.length > 0 &&
-      !downPaymentFilter.some((id) => {
+      appliedFilters.downPayment.length > 0 &&
+      !appliedFilters.downPayment.some((id) => {
         const bucket = DOWN_PAYMENT_BUCKETS.find((b) => b.id === id)
         const downPayment = Math.round(property.minPriceLacs * 0.2)
         return downPayment >= bucket.min && downPayment < bucket.max
@@ -126,9 +136,9 @@ function DeveloperPage() {
       return false
     }
 
-    if (possessionFilter.length > 0) {
+    if (appliedFilters.possession.length > 0) {
       const match = property.possession.match(/\d{4}/)
-      if (!match || !possessionFilter.includes(match[0])) return false
+      if (!match || !appliedFilters.possession.includes(match[0])) return false
     }
 
     return true
@@ -140,11 +150,22 @@ function DeveloperPage() {
     )
   }
 
+  function runSearch() {
+    setAppliedFilters({
+      bhk: bhkFilter,
+      budget: budgetFilter,
+      downPayment: downPaymentFilter,
+      possession: possessionFilter,
+    })
+    setOpenFilter(null)
+  }
+
   function resetFilters() {
     setBhkFilter([])
     setBudgetFilter([])
     setDownPaymentFilter([])
     setPossessionFilter([])
+    setAppliedFilters({ bhk: [], budget: [], downPayment: [], possession: [] })
     setActiveToggles([])
     setOpenFilter(null)
   }
@@ -213,6 +234,10 @@ function DeveloperPage() {
             isOpen={openFilter === 'possession'}
             onToggle={() => setOpenFilter(openFilter === 'possession' ? null : 'possession')}
           />
+          <button className="developer-page__search" onClick={runSearch}>
+            <Search size={14} />
+            Search
+          </button>
           <button className="developer-page__reset" onClick={resetFilters}>
             <RotateCcw size={14} />
             Reset

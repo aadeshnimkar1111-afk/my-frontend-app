@@ -107,8 +107,22 @@
   cursor: pointer;
 }
 
-.developer-page__reset {
+.developer-page__search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #0f9d58;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
   margin-left: auto;
+}
+
+.developer-page__reset {
   border-color: #eee;
 }
 
@@ -462,7 +476,7 @@
     flex-direction: column;
   }
 
-  .developer-page__reset {
+  .developer-page__search {
     margin-left: 0;
   }
 }
