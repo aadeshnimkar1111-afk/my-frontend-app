@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Calendar, Search, Video, X } from 'lucide-react'
 import { PROPERTIES } from '../../data/properties'
 import mdnLogo from '../../assets/mdn-logo.png'
+import PresentationVisual from './PresentationVisual'
 import './SchedulePresentationModal.css'
 
 const PLATFORMS = [
@@ -50,10 +51,15 @@ function SchedulePresentationModal({ initialQuery = '', onClose }) {
           <X size={20} />
         </button>
 
+        <div className="presentation-modal__visual">
+          <PresentationVisual />
+          <img className="presentation-modal__visual-logo" src={mdnLogo} alt="MDN Salesforce" />
+        </div>
+
+        <div className="presentation-modal__panel">
         {!booked ? (
           <>
             <div className="presentation-modal__header">
-              <img src={mdnLogo} alt="MDN Salesforce" />
               <h3>Online Presentation</h3>
             </div>
 
@@ -128,6 +134,7 @@ function SchedulePresentationModal({ initialQuery = '', onClose }) {
             </button>
           </div>
         )}
+        </div>
       </div>
     </div>
   )
