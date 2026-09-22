@@ -55,7 +55,7 @@ function Navbar() {
       <div className="navbar__search">
         <div className="navbar__city" ref={cityRef} onClick={() => setCityOpen(!cityOpen)}>
           <span>{city}</span>
-          <ChevronDown size={16} />
+          <ChevronDown size={18} />
           {cityOpen && (
             <ul className="navbar__city-dropdown">
               {CITIES.map((c) => (
@@ -89,7 +89,7 @@ function Navbar() {
           aria-label="Search"
           onClick={() => openMapFor(searchText)}
         >
-          <Search size={20} />
+          <Search size={22} />
         </button>
       </div>
 
@@ -99,7 +99,7 @@ function Navbar() {
           onClick={() => document.getElementById('reels')?.scrollIntoView({ behavior: 'smooth' })}
         >
           <span className="navbar__reels-badge">NEW</span>
-          <Play size={16} fill="currentColor" />
+          <Play size={18} fill="currentColor" />
           <span className="navbar__label">Reels</span>
         </button>
 
@@ -107,12 +107,12 @@ function Navbar() {
           className={`navbar__icon-btn ${wishlist.length > 0 ? 'is-active' : ''}`}
           aria-label="Wishlist"
         >
-          <Heart size={20} fill={wishlist.length > 0 ? 'currentColor' : 'none'} />
+          <Heart size={22} fill={wishlist.length > 0 ? 'currentColor' : 'none'} />
           {wishlist.length > 0 && <span className="navbar__notif-badge">{wishlist.length}</span>}
         </button>
 
         <button className="navbar__signin" onClick={() => setAuthOpen(true)}>
-          <User size={16} />
+          <User size={18} />
           <span className="navbar__label">Sign in</span>
         </button>
 
@@ -121,7 +121,7 @@ function Navbar() {
           aria-label="Menu"
           onClick={() => setMenuOpen(true)}
         >
-          <Menu size={22} />
+          <Menu size={24} />
         </button>
       </div>
 

@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 16px 24px;
-  padding: 14px 32px;
+  padding: 22px 32px;
   background-color: #fff;
   border-bottom: 1px solid #eee;
 }
@@ -13,7 +13,7 @@
 }
 
 .navbar__logo img {
-  height: 40px;
+  height: 48px;
   display: block;
 }
 
@@ -24,12 +24,12 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 9px 16px;
+  padding: 12px 20px;
   border: 1px solid #0f9d58;
   border-radius: 6px;
   background: #e3f5e9;
   color: #0f9d58;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
@@ -57,8 +57,8 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 0 14px;
-  font-size: 14px;
+  padding: 0 16px;
+  font-size: 15px;
   font-weight: 500;
   color: #333;
   cursor: pointer;
@@ -96,7 +96,7 @@
   border: none;
   background: transparent;
   padding: 0 16px;
-  font-size: 14px;
+  font-size: 15px;
   color: #333;
   outline: none;
 }
@@ -109,7 +109,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
+  width: 58px;
   border: none;
   border-radius: 0 7px 7px 0;
   background-color: #16213e;
@@ -134,12 +134,12 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 9px 18px;
+  padding: 12px 22px;
   border: none;
   border-radius: 6px;
   background-color: #0f9d58;
   color: #fff;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -191,12 +191,12 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 9px 18px;
+  padding: 12px 22px;
   border: none;
   border-radius: 6px;
   background-color: #e3f5e9;
   color: #0f9d58;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
 }
