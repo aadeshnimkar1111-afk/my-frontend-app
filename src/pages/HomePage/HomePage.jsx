@@ -1,5 +1,6 @@
 import Navbar from '../../components/Navbar/Navbar'
 import Hero from '../../components/Hero/Hero'
+import TopDevelopers from '../../components/TopDevelopers/TopDevelopers'
 import PropertiesCarousel from '../../components/PropertiesCarousel/PropertiesCarousel'
 import WhyChooseUs from '../../components/WhyChooseUs/WhyChooseUs'
 import ReelsCarousel from '../../components/ReelsCarousel/ReelsCarousel'
@@ -12,6 +13,7 @@ function HomePage() {
     <>
       <Navbar />
       <Hero />
+      <TopDevelopers />
       <WhyChooseUs />
       <ReelsCarousel />
       <OnlineSiteVisit />
