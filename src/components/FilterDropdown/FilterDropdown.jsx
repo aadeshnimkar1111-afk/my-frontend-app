@@ -2,8 +2,8 @@ import { ChevronDown } from 'lucide-react'
 import './FilterDropdown.css'
 
 function FilterDropdown({ label, options, selected, onChange, isOpen, onToggle }) {
-  function toggleOption(id) {
-    onChange(selected.includes(id) ? selected.filter((s) => s !== id) : [...selected, id])
+  function selectOption(id) {
+    onChange(selected.includes(id) ? [] : [id])
   }
 
   return (
@@ -23,9 +23,9 @@ function FilterDropdown({ label, options, selected, onChange, isOpen, onToggle }
           {options.map((opt) => (
             <label key={opt.id} className="filter-dropdown__option">
               <input
-                type="checkbox"
+                type="radio"
                 checked={selected.includes(opt.id)}
-                onChange={() => toggleOption(opt.id)}
+                onChange={() => selectOption(opt.id)}
               />
               {opt.label}
             </label>
