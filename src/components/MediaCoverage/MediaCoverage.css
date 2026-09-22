@@ -1,0 +1,140 @@
+.media-coverage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #16213e;
+}
+
+.media-coverage__video-card {
+  position: relative;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  min-height: 320px;
+  background: linear-gradient(160deg, #2c4870 0%, #16213e 70%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  overflow: hidden;
+}
+
+.media-coverage__banner {
+  background: #0f9d58;
+  color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 60px;
+}
+
+.media-coverage__banner span {
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.media-coverage__banner small {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.media-coverage__caption {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 16px 24px;
+}
+
+.media-coverage__caption-title {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.media-coverage__caption-sub {
+  color: #d7dde6;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.media-coverage__play {
+  position: absolute;
+  bottom: 90px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-coverage__info {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.media-coverage__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4ade80;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.media-coverage__info h2 {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.media-coverage__info > p {
+  color: #b7c2d0;
+  font-size: 0.95rem;
+  margin: 0 0 28px;
+}
+
+.media-coverage__logos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.media-coverage__logo {
+  background: #fff;
+  color: #16213e;
+  border-radius: 8px;
+  padding: 18px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 860px) {
+  .media-coverage {
+    grid-template-columns: 1fr;
+  }
+
+  .media-coverage__video-card {
+    min-height: 260px;
+  }
+
+  .media-coverage__info {
+    padding: 40px 24px;
+  }
+
+  .media-coverage__logos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -4,6 +4,7 @@ import PropertiesCarousel from '../../components/PropertiesCarousel/PropertiesCa
 import WhyChooseUs from '../../components/WhyChooseUs/WhyChooseUs'
 import ReelsCarousel from '../../components/ReelsCarousel/ReelsCarousel'
 import OnlineSiteVisit from '../../components/OnlineSiteVisit/OnlineSiteVisit'
+import MediaCoverage from '../../components/MediaCoverage/MediaCoverage'
 import Footer from '../../components/Footer/Footer'
 
 function HomePage() {
@@ -14,6 +15,7 @@ function HomePage() {
       <WhyChooseUs />
       <ReelsCarousel />
       <OnlineSiteVisit />
+      <MediaCoverage />
       <PropertiesCarousel />
       <Footer />
     </>
