@@ -14,8 +14,8 @@ function HomePage() {
       <Hero />
       <WhyChooseUs />
       <ReelsCarousel />
-      <OnlineSiteVisit />
       <MediaCoverage />
+      <OnlineSiteVisit />
       <PropertiesCarousel />
       <Footer />
     </>
