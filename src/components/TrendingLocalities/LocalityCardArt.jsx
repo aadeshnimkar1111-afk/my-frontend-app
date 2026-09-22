@@ -12,13 +12,20 @@ function seededBars(seed, count) {
 function LocalityCardArt({ seed }) {
   const bars = seededBars(seed, 22)
   const barWidth = 220 / bars.length
+  const gradientId = `bar-${seed.replace(/[^a-zA-Z0-9]/g, '')}`
 
   return (
     <svg viewBox="0 0 220 90" className="locality-card__art" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#3fb87c" />
+          <stop offset="1" stopColor="#cdead9" />
+        </linearGradient>
+      </defs>
       <path
         d="M0,34 C55,10 110,10 220,34"
         fill="none"
-        stroke="#9fb8ac"
+        stroke="#7cc7a0"
         strokeWidth="1.5"
         strokeDasharray="3 4"
       />
@@ -29,7 +36,7 @@ function LocalityCardArt({ seed }) {
           y={90 - h}
           width={barWidth - 2}
           height={h}
-          fill="#b9dcc7"
+          fill={`url(#${gradientId})`}
         />
       ))}
     </svg>

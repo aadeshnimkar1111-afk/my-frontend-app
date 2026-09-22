@@ -1,6 +1,6 @@
 .trending-localities {
   padding: 56px 40px 64px;
-  background: #fff;
+  background: linear-gradient(180deg, #eef8f1 0%, #f6faf8 100%);
 }
 
 .trending-localities__header {
@@ -54,9 +54,9 @@
 .trending-localities__tab {
   padding: 12px 22px;
   border-radius: 999px;
-  border: 1.5px solid #ddd;
+  border: 1.5px solid #d7e6dc;
   background: #fff;
-  color: #777;
+  color: #5b6b62;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
@@ -89,16 +89,22 @@
   scroll-snap-align: start;
   height: 230px;
   border-radius: 14px;
-  border: 1px solid #e8ebee;
-  background: linear-gradient(180deg, #fafbfc 0%, #eef1f3 100%);
+  border: 1px solid #eef0f2;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(22, 33, 62, 0.06);
   overflow: hidden;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.locality-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(22, 33, 62, 0.1);
 }
 
 .locality-card.is-selected {
-  border-color: #b8e6c9;
-  background: linear-gradient(180deg, #f4fbf7 0%, #e3f5e9 100%);
+  border-color: #0f9d58;
+  box-shadow: 0 0 0 3px rgba(15, 157, 88, 0.14), 0 14px 30px rgba(22, 33, 62, 0.1);
 }
 
 .locality-card__info {
@@ -108,12 +114,12 @@
 .locality-card__info strong {
   font-size: 1.6rem;
   font-weight: 800;
-  color: #16213e;
+  color: #0f9d58;
 }
 
 .locality-card__info span {
   font-size: 0.9rem;
-  color: #666;
+  color: #888;
   margin-left: 6px;
 }
 
@@ -129,15 +135,16 @@
   left: 50%;
   bottom: 78px;
   transform: translateX(-50%);
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: #16213e;
+  background: #0f9d58;
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
+  box-shadow: 0 4px 10px rgba(15, 157, 88, 0.35);
 }
 
 .locality-card__art {
