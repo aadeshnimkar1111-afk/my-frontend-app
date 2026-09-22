@@ -22,7 +22,7 @@ function PropertiesCarousel() {
   const navigate = useNavigate()
 
   function scroll(direction) {
-    trackRef.current?.scrollBy({ left: direction * 340, behavior: 'smooth' })
+    trackRef.current?.scrollBy({ left: direction * 420, behavior: 'smooth' })
   }
 
   return (
