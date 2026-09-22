@@ -12,8 +12,6 @@ function Hero() {
 
   return (
     <section id="home" className="hero">
-      <div className="hero__backdrop" />
-
       <div className="hero__text">
         <h1 className="hero__title">
           Buy Homes Directly
