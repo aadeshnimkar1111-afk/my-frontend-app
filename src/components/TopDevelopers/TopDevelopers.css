@@ -67,6 +67,14 @@
   padding: 24px;
   display: flex;
   flex-direction: column;
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+
+.developer-card:hover {
+  box-shadow: 0 12px 28px rgba(22, 33, 62, 0.12);
 }
 
 .developer-card__years {

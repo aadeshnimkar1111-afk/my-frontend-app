@@ -1,18 +1,13 @@
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { PROPERTIES } from '../../data/properties'
+import { DEVELOPERS } from '../../data/developers'
 import './TopDevelopers.css'
-
-// Placeholder data - admin will add/edit real developers here (or from a CMS later).
-const DEVELOPERS = [
-  { id: 1, name: 'Mantra Properties', years: '10y +', totalProjects: 15 },
-  { id: 2, name: 'Majestique Landmarks', years: '18y +', totalProjects: 26 },
-  { id: 3, name: 'Saheel Properties', years: '19y +', totalProjects: 10 },
-  { id: 4, name: 'Rohan Builders', years: '32y +', totalProjects: 11 },
-  { id: 5, name: 'VTP Realty', years: '39y +', totalProjects: 27 },
-]
 
 function TopDevelopers() {
   const trackRef = useRef(null)
+  const navigate = useNavigate()
 
   function scroll(direction) {
     trackRef.current?.scrollBy({ left: direction * 320, behavior: 'smooth' })
@@ -33,17 +28,24 @@ function TopDevelopers() {
       </div>
 
       <div className="top-developers__track" ref={trackRef}>
-        {DEVELOPERS.map((dev) => (
-          <div className="developer-card" key={dev.id}>
-            <span className="developer-card__years">{dev.years}</span>
-            <span className="developer-card__name">{dev.name}</span>
+        {DEVELOPERS.map((dev) => {
+          const totalProjects = PROPERTIES.filter((p) => p.developer === dev.name).length
+          return (
+            <button
+              className="developer-card"
+              key={dev.id}
+              onClick={() => navigate(`/developer/${dev.slug}`)}
+            >
+              <span className="developer-card__years">{dev.years}</span>
+              <span className="developer-card__name">{dev.name}</span>
 
-            <div className="developer-card__hill">
-              <span className="developer-card__label">TOTAL PROJECTS</span>
-              <span className="developer-card__count">{dev.totalProjects}</span>
-            </div>
-          </div>
-        ))}
+              <div className="developer-card__hill">
+                <span className="developer-card__label">TOTAL PROJECTS</span>
+                <span className="developer-card__count">{totalProjects}</span>
+              </div>
+            </button>
+          )
+        })}
       </div>
     </section>
   )
