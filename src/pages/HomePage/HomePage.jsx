@@ -13,12 +13,12 @@ function HomePage() {
     <>
       <Navbar />
       <Hero />
-      <TopDevelopers />
       <WhyChooseUs />
       <ReelsCarousel />
       <OnlineSiteVisit />
       <PropertiesCarousel />
       <MediaCoverage />
+      <TopDevelopers />
       <Footer />
     </>
   )
