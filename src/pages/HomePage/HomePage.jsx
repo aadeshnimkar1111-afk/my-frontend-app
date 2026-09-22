@@ -19,10 +19,10 @@ function HomePage() {
       <ReelsCarousel />
       <OnlineSiteVisit />
       <PropertiesCarousel />
-      <PossessionTimeline />
       <MediaCoverage />
       <TopDevelopers />
       <OnlineProjectPresentation />
+      <PossessionTimeline />
       <Footer />
     </>
   )
