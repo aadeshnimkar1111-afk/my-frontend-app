@@ -1,0 +1,170 @@
+.trending-localities {
+  padding: 56px 40px 64px;
+  background: #fff;
+}
+
+.trending-localities__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1140px;
+  margin: 0 auto 22px;
+}
+
+.trending-localities__header h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #16213e;
+  margin: 0;
+}
+
+.trending-localities__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.trending-localities__arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #e3f5e9;
+  color: #0f9d58;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.trending-localities__arrow:hover {
+  background: #d5f0e0;
+}
+
+.trending-localities__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 1140px;
+  margin: 0 auto 28px;
+}
+
+.trending-localities__tab {
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  color: #777;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.trending-localities__tab.is-active {
+  border-color: #0f9d58;
+  color: #0f9d58;
+  background: #f2faf5;
+}
+
+.trending-localities__track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+}
+
+.trending-localities__track::-webkit-scrollbar {
+  display: none;
+}
+
+.locality-card {
+  position: relative;
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  height: 230px;
+  border-radius: 14px;
+  border: 1px solid #e8ebee;
+  background: linear-gradient(180deg, #fafbfc 0%, #eef1f3 100%);
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.locality-card.is-selected {
+  border-color: #b8e6c9;
+  background: linear-gradient(180deg, #f4fbf7 0%, #e3f5e9 100%);
+}
+
+.locality-card__info {
+  padding: 20px 20px 0;
+}
+
+.locality-card__info strong {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #16213e;
+}
+
+.locality-card__info span {
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 6px;
+}
+
+.locality-card__info p {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #16213e;
+  margin: 4px 0 0;
+}
+
+.locality-card__pin {
+  position: absolute;
+  left: 50%;
+  bottom: 78px;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #16213e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.locality-card__art {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .trending-localities {
+    padding: 40px 20px 48px;
+  }
+
+  .trending-localities__header h2 {
+    font-size: 1.5rem;
+  }
+
+  .trending-localities__tab {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  .locality-card {
+    flex-basis: 220px;
+    height: 200px;
+  }
+}
