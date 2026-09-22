@@ -34,43 +34,45 @@ function Hero() {
         </div>
       </div>
 
-      <div className="hero__panels">
-        <div className="hero__panel-left">
-          <div className="hero__tabs">
-            <button
-              className={`hero__tab ${propertyType === 'apartment' ? 'is-active' : ''}`}
-              onClick={() => setPropertyType('apartment')}
-            >
-              Apartment
-            </button>
-            <button className="hero__tab" disabled>
-              Plots
-              <span className="hero__coming-soon">Coming Soon</span>
-            </button>
-          </div>
-
-          <button className="hero__city" onClick={() => setCityModalOpen(true)}>
-            <MapPin size={16} />
-            {city}
-            <ChevronDown size={16} />
+      <div className="hero__search-wrapper">
+        <div className="hero__tabs">
+          <button
+            className={`hero__tab ${propertyType === 'apartment' ? 'is-active' : ''}`}
+            onClick={() => setPropertyType('apartment')}
+          >
+            Apartment
+          </button>
+          <button className="hero__tab" disabled>
+            Plots
+            <span className="hero__coming-soon">Coming Soon</span>
           </button>
         </div>
 
-        <div className="hero__panel-right">
-          <div className="hero__search-input">
-            <input type="text" placeholder="Search for Project, locality or builder" />
-            <button aria-label="Search">
-              <Search size={20} />
+        <div className="hero__search-card">
+          <div className="hero__col-left">
+            <button className="hero__city" onClick={() => setCityModalOpen(true)}>
+              <MapPin size={16} />
+              {city}
+              <ChevronDown size={16} />
             </button>
           </div>
 
-          <div className="hero__localities">
-            <span>Popular Localities</span>
-            {LOCALITIES.map((loc, i) => (
-              <button key={loc} className={`hero__locality-chip ${i === 0 ? 'is-active' : ''}`}>
-                {loc}
+          <div className="hero__col-right">
+            <div className="hero__search-input">
+              <input type="text" placeholder="Search for Project, locality or builder" />
+              <button aria-label="Search">
+                <Search size={20} />
               </button>
-            ))}
+            </div>
+
+            <div className="hero__localities">
+              <span>Popular Localities</span>
+              {LOCALITIES.map((loc, i) => (
+                <button key={loc} className={`hero__locality-chip ${i === 0 ? 'is-active' : ''}`}>
+                  {loc}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
