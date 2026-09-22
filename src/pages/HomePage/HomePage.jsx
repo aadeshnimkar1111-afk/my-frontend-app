@@ -17,10 +17,10 @@ function HomePage() {
       <WhyChooseUs />
       <ReelsCarousel />
       <OnlineSiteVisit />
-      <OnlineProjectPresentation />
       <PropertiesCarousel />
       <MediaCoverage />
       <TopDevelopers />
+      <OnlineProjectPresentation />
       <Footer />
     </>
   )
