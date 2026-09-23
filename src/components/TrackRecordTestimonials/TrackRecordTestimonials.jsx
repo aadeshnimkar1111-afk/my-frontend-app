@@ -108,7 +108,9 @@ function TrackRecordTestimonials() {
                   <User size={16} />
                 </span>
                 {!video.videoId && (
-                  <span className="testimonial-card__caption">Video coming soon</span>
+                  <span className="testimonial-card__caption">
+                    Video coming soon &middot; #{video.id}
+                  </span>
                 )}
               </div>
             ))}
