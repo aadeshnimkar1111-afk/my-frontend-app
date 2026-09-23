@@ -1,11 +1,32 @@
-import { useState } from 'react'
-import { Zap, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ChevronDown, Zap, X } from 'lucide-react'
+import { COUNTRIES, flagEmoji } from '../../data/countries'
 import './SignUpModal.css'
+
+const DEFAULT_COUNTRY = COUNTRIES.find((c) => c.code === 'IN')
 
 function SignUpModal({ initialPhone = '', onClose }) {
   const [phone, setPhone] = useState(initialPhone)
   const [submitted, setSubmitted] = useState(false)
+  const [country, setCountry] = useState(DEFAULT_COUNTRY)
+  const [countryOpen, setCountryOpen] = useState(false)
+  const countryRef = useRef(null)
+  const activeOptionRef = useRef(null)
   const isValid = phone.length === 10
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (countryRef.current && !countryRef.current.contains(e.target)) {
+        setCountryOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  useEffect(() => {
+    if (countryOpen) activeOptionRef.current?.scrollIntoView({ block: 'center' })
+  }, [countryOpen])
 
   function handleContinue() {
     if (!isValid) return
@@ -42,14 +63,41 @@ function SignUpModal({ initialPhone = '', onClose }) {
                 Trusted By <strong>1 Lac+</strong> Home Buyers
               </div>
 
-              <div className="signup-modal__phone">
-                <span className="signup-modal__code">+91</span>
+              <div className="signup-modal__phone" ref={countryRef}>
+                <button
+                  type="button"
+                  className="signup-modal__code"
+                  onClick={() => setCountryOpen((o) => !o)}
+                >
+                  {flagEmoji(country.code)} +{country.dial}
+                  <ChevronDown size={14} />
+                </button>
                 <input
                   type="tel"
                   placeholder="Phone Number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                 />
+
+                {countryOpen && (
+                  <div className="signup-modal__country-list">
+                    {COUNTRIES.map((c) => (
+                      <button
+                        key={c.code}
+                        ref={c.code === country.code ? activeOptionRef : null}
+                        type="button"
+                        className={`signup-modal__country-option ${c.code === country.code ? 'is-active' : ''}`}
+                        onClick={() => {
+                          setCountry(c)
+                          setCountryOpen(false)
+                        }}
+                      >
+                        <span>{flagEmoji(c.code)}</span>
+                        {c.name}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <button
@@ -67,8 +115,8 @@ function SignUpModal({ initialPhone = '', onClose }) {
             <div className="signup-modal__confirm">
               <h3>Thanks for Signing Up!</h3>
               <p>
-                Our team will call you shortly on <strong>+91 {phone}</strong> with exclusive
-                deals and free site visit options.
+                Our team will call you shortly on <strong>+{country.dial} {phone}</strong> with
+                exclusive deals and free site visit options.
               </p>
               <button className="signup-modal__continue is-active" onClick={onClose}>
                 Done

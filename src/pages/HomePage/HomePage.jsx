@@ -27,8 +27,8 @@ function HomePage() {
       <BookOnlineVisit />
       <TrendingLocalities />
       <OnlineProjectPresentation />
-      <ReviewsSignup />
       <PossessionTimeline />
+      <ReviewsSignup />
       <Footer />
     </>
   )
