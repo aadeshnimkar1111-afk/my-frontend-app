@@ -11,22 +11,52 @@ const BUILDINGS = [
   { x: 1125, w: 55, h: 140 },
 ]
 
+function Wheel({ cx, cy }) {
+  return (
+    <g transform={`translate(${cx},${cy})`}>
+      <circle r="25" fill="#1c1c1c" />
+      <circle r="13" fill="#d6d6d6" />
+      <circle r="4.5" fill="#8b8b8b" />
+      {[0, 60, 120, 180, 240, 300].map((deg) => (
+        <line
+          key={deg}
+          x1="0"
+          y1="0"
+          x2={13 * Math.cos((deg * Math.PI) / 180)}
+          y2={13 * Math.sin((deg * Math.PI) / 180)}
+          stroke="#8b8b8b"
+          strokeWidth="2.5"
+        />
+      ))}
+    </g>
+  )
+}
+
+function WheelArch({ cx }) {
+  return (
+    <path
+      d={`M${cx - 34},104 A34,34 0 0,1 ${cx + 34},104 L${cx + 34},76 L${cx - 34},76 Z`}
+      fill="#f7c331"
+    />
+  )
+}
+
 function BookVisitScene() {
   return (
-    <svg viewBox="0 0 1200 300" className="book-visit-scene" preserveAspectRatio="xMidYMax slice">
+    <svg viewBox="0 0 1200 350" className="book-visit-scene" preserveAspectRatio="xMidYMax slice">
       {BUILDINGS.map((b, i) => (
-        <rect key={i} x={b.x} y={250 - b.h} width={b.w} height={b.h} fill="#c7d2de" />
+        <rect key={i} x={b.x} y={300 - b.h} width={b.w} height={b.h} fill="#c7d2de" />
       ))}
 
       <path
-        d="M100,192 Q210,102 320,142"
+        d="M100,242 Q210,152 320,192"
         fill="none"
         stroke="#5b7290"
         strokeWidth="2.5"
         strokeDasharray="5 6"
       />
       <path
-        d="M320,142 Q440,50 560,92"
+        d="M320,192 Q440,100 560,142"
         fill="none"
         stroke="#5b7290"
         strokeWidth="2.5"
@@ -34,102 +64,88 @@ function BookVisitScene() {
       />
 
       <g>
-        <circle cx="100" cy="192" r="8" fill="#0f9d58" />
-        <text x="118" y="197" fontSize="20" fontWeight="700" fill="#3a4a5c">
+        <circle cx="100" cy="242" r="8" fill="#0f9d58" />
+        <text x="118" y="247" fontSize="20" fontWeight="700" fill="#3a4a5c">
           Project A
         </text>
       </g>
       <g>
-        <circle cx="320" cy="142" r="8" fill="#0f9d58" />
-        <text x="338" y="147" fontSize="20" fontWeight="700" fill="#3a4a5c">
+        <circle cx="320" cy="192" r="8" fill="#0f9d58" />
+        <text x="338" y="197" fontSize="20" fontWeight="700" fill="#3a4a5c">
           Project B
         </text>
       </g>
       <g>
-        <circle cx="560" cy="92" r="8" fill="#0f9d58" />
-        <text x="578" y="97" fontSize="20" fontWeight="700" fill="#3a4a5c">
+        <circle cx="560" cy="142" r="8" fill="#0f9d58" />
+        <text x="578" y="147" fontSize="20" fontWeight="700" fill="#3a4a5c">
           Project C
         </text>
       </g>
 
-      <rect x="0" y="250" width="1200" height="50" fill="#16213e" />
+      <rect x="0" y="300" width="1200" height="50" fill="#16213e" />
       {[...Array(14)].map((_, i) => (
-        <rect key={i} x={i * 90 + 10} y="273" width="40" height="5" fill="#ffffff" opacity="0.5" />
+        <rect key={i} x={i * 90 + 10} y="323" width="40" height="5" fill="#ffffff" opacity="0.5" />
       ))}
 
-      <g transform="translate(80,128)">
-        <ellipse cx="150" cy="118" rx="150" ry="8" fill="#16213e" opacity="0.12" />
+      <g transform="translate(90,180)">
+        <ellipse cx="160" cy="122" rx="165" ry="8" fill="#16213e" opacity="0.12" />
 
         <path
-          d="M8,100 C8,88 16,80 28,79 L45,77 C58,50 82,28 112,20 C130,10 158,4 188,4 C222,4 254,10 276,24 C292,34 302,48 306,64 L312,78 C322,80 328,88 328,100 L328,108 L8,108 Z"
+          d="M12,98 C12,89 18,83 27,82 L44,80 C52,59 64,42 82,31 C100,20 124,13 152,12 C184,11 216,14 240,22 C258,28 270,38 276,52 C282,64 284,76 284,86 L298,88 C306,90 310,96 310,102 L310,106 L12,106 Z"
           fill="#f7c331"
         />
         <path
-          d="M8,100 C8,88 16,80 28,79 L45,77 C58,50 82,28 112,20 C130,10 158,4 188,4 C222,4 254,10 276,24 C292,34 302,48 306,64 L312,78 C322,80 328,88 328,100"
+          d="M12,98 C12,89 18,83 27,82 L44,80 C52,59 64,42 82,31 C100,20 124,13 152,12 C184,11 216,14 240,22 C258,28 270,38 276,52 C282,64 284,76 284,86 L298,88 C306,90 310,96 310,102"
           fill="none"
           stroke="#c9931a"
           strokeWidth="2"
         />
 
+        <rect x="20" y="90" width="278" height="10" fill="#20293a" />
+
         <path
-          d="M62,73 C74,50 94,32 118,26 C130,19 150,15 172,15 C198,15 222,20 240,30 C252,37 260,47 264,58 L264,73 Z"
-          fill="#22384f"
+          d="M66,76 C74,56 85,41 100,32 C115,23 134,17 154,16 C178,15 202,18 220,25 C232,30 240,38 244,48 L244,76 Z"
+          fill="#20293a"
         />
-        <path d="M120,25 L124,73" stroke="#f7c331" strokeWidth="3" />
-        <path d="M196,17 L200,73" stroke="#f7c331" strokeWidth="3" />
+        <path d="M118,22 L122,76" stroke="#f7c331" strokeWidth="3" />
+        <path d="M186,17 L190,76" stroke="#f7c331" strokeWidth="3" />
         <path
-          d="M62,73 C74,50 94,32 118,26 C130,19 150,15 172,15 C198,15 222,20 240,30 C252,37 260,47 264,58 L264,73"
+          d="M78,52 C86,42 96,34 108,28"
+          fill="none"
+          stroke="#8fa8c2"
+          strokeWidth="4"
+          strokeLinecap="round"
+          opacity="0.55"
+        />
+        <path
+          d="M66,76 C74,56 85,41 100,32 C115,23 134,17 154,16 C178,15 202,18 220,25 C232,30 240,38 244,48 L244,76"
           fill="none"
           stroke="#c9931a"
           strokeWidth="2"
         />
 
-        <rect x="20" y="82" width="298" height="10" fill="#20293a" />
         <g fill="#20293a">
-          <rect x="140" y="60" width="24" height="20" />
-          <rect x="164" y="60" width="24" height="20" fill="#fff" />
-          <rect x="188" y="60" width="24" height="20" />
-          <rect x="212" y="60" width="24" height="20" fill="#fff" />
+          <rect x="150" y="58" width="22" height="18" />
+          <rect x="172" y="58" width="22" height="18" fill="#fff" />
+          <rect x="194" y="58" width="22" height="18" />
+          <rect x="216" y="58" width="22" height="18" fill="#fff" />
         </g>
 
-        <rect x="146" y="66" width="14" height="4" rx="1.5" fill="#4a4a4a" />
-        <path d="M112,28 C104,26 98,29 96,36 C102,34 108,33 114,34 Z" fill="#f7c331" stroke="#c9931a" strokeWidth="1.5" />
+        <rect x="150" y="64" width="14" height="4" rx="1.5" fill="#4a4a4a" />
+        <path
+          d="M99,29 C91,27 85,30 83,37 C89,35 95,34 101,35 Z"
+          fill="#f7c331"
+          stroke="#c9931a"
+          strokeWidth="1.5"
+        />
 
-        <ellipse cx="14" cy="88" rx="8" ry="5" fill="#fdf4d8" />
-        <ellipse cx="322" cy="90" rx="6" ry="4" fill="#d13c3c" />
+        <ellipse cx="18" cy="90" rx="8" ry="5" fill="#fdf4d8" />
+        <ellipse cx="304" cy="92" rx="6" ry="4" fill="#d13c3c" />
 
-        <g transform="translate(66,108)">
-          <circle r="26" fill="#1c1c1c" />
-          <circle r="12" fill="#d6d6d6" />
-          <circle r="4" fill="#8b8b8b" />
-          {[0, 60, 120, 180, 240, 300].map((deg) => (
-            <line
-              key={deg}
-              x1="0"
-              y1="0"
-              x2={12 * Math.cos((deg * Math.PI) / 180)}
-              y2={12 * Math.sin((deg * Math.PI) / 180)}
-              stroke="#8b8b8b"
-              strokeWidth="2.5"
-            />
-          ))}
-        </g>
-        <g transform="translate(262,108)">
-          <circle r="26" fill="#1c1c1c" />
-          <circle r="12" fill="#d6d6d6" />
-          <circle r="4" fill="#8b8b8b" />
-          {[0, 60, 120, 180, 240, 300].map((deg) => (
-            <line
-              key={deg}
-              x1="0"
-              y1="0"
-              x2={12 * Math.cos((deg * Math.PI) / 180)}
-              y2={12 * Math.sin((deg * Math.PI) / 180)}
-              stroke="#8b8b8b"
-              strokeWidth="2.5"
-            />
-          ))}
-        </g>
+        <Wheel cx={72} cy={100} />
+        <Wheel cx={252} cy={100} />
+        <WheelArch cx={72} />
+        <WheelArch cx={252} />
       </g>
     </svg>
   )
