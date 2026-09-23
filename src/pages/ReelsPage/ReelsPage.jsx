@@ -74,8 +74,21 @@ function ReelsPage() {
         </div>
 
         <div className="reels-page__video">
-          <span className="reels-page__brand">MDN</span>
-          <p className="reels-page__video-caption">{reel.locality}</p>
+          {reel.videoId ? (
+            <iframe
+              key={`${reel.videoId}-${muted}`}
+              className="reels-page__iframe"
+              src={`https://www.youtube.com/embed/${reel.videoId}?autoplay=1&mute=${muted ? 1 : 0}&loop=1&playlist=${reel.videoId}&controls=0&modestbranding=1&rel=0`}
+              title={reel.project.name}
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            />
+          ) : (
+            <>
+              <span className="reels-page__brand">MDN</span>
+              <p className="reels-page__video-caption">{reel.locality}</p>
+            </>
+          )}
         </div>
 
         <div className="reels-page__info">

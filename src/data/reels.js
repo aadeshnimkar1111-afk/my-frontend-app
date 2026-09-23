@@ -69,11 +69,12 @@ export const REELS = [
   },
   {
     id: 5,
-    locality: 'Keshav Nagar',
+    locality: 'Kharadi',
+    videoId: 'nj5-QAUWx00',
     project: {
       name: 'Godrej Ivara',
       developer: 'Godrej Properties',
-      location: 'Keshav Nagar, Pune',
+      location: 'Kharadi, Pune',
       units: [
         { bhk: '2BHK', price: '₹1.29 Cr+' },
         { bhk: '3BHK', price: '₹1.63 Cr+' },

@@ -48,8 +48,16 @@ function ReelsCarousel() {
               }}
               onClick={() => handleCardClick(index, reel)}
             >
-              <div className="reel-card__thumbnail">
-                <span className="reel-card__brand">MDN</span>
+              <div
+                className="reel-card__thumbnail"
+                style={
+                  reel.videoId
+                    ? { backgroundImage: `url(https://img.youtube.com/vi/${reel.videoId}/hqdefault.jpg)` }
+                    : undefined
+                }
+              >
+                {!reel.videoId && <span className="reel-card__brand">MDN</span>}
+                {reel.videoId && <span className="reel-card__scrim" />}
 
                 <div className="reel-card__info">
                   <span className="reel-card__location">
