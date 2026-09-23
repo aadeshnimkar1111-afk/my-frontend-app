@@ -9,6 +9,7 @@ import OnlineSiteVisit from '../../components/OnlineSiteVisit/OnlineSiteVisit'
 import OnlineProjectPresentation from '../../components/OnlineProjectPresentation/OnlineProjectPresentation'
 import TrendingLocalities from '../../components/TrendingLocalities/TrendingLocalities'
 import BookOnlineVisit from '../../components/BookOnlineVisit/BookOnlineVisit'
+import ReviewsSignup from '../../components/ReviewsSignup/ReviewsSignup'
 import MediaCoverage from '../../components/MediaCoverage/MediaCoverage'
 import Footer from '../../components/Footer/Footer'
 
@@ -26,6 +27,7 @@ function HomePage() {
       <BookOnlineVisit />
       <TrendingLocalities />
       <OnlineProjectPresentation />
+      <ReviewsSignup />
       <PossessionTimeline />
       <Footer />
     </>
