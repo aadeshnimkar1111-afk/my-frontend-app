@@ -1,5 +1,6 @@
 import mdnLogo from '../../assets/mdn-logo.png'
 import { DEVELOPERS } from '../../data/developers'
+import OurOffices from '../OurOffices/OurOffices'
 import './Footer.css'
 
 const LOCALITIES = ['Hinjewadi', 'Wakad', 'Punawale', 'Kharadi', 'Tathawade', 'Charholi']
@@ -44,6 +45,8 @@ function Footer() {
           ))}
         </div>
       </div>
+
+      <OurOffices />
 
       <div className="footer__bottom">
         &copy; {new Date().getFullYear()} MDN Salesforce. All rights reserved.

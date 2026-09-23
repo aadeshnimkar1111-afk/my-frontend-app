@@ -1,0 +1,127 @@
+.our-offices {
+  display: flex;
+  gap: 48px;
+  padding: 48px 40px;
+  background: #234b63;
+  color: #cdd7de;
+}
+
+.our-offices__registered {
+  flex: 0 0 280px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  padding-right: 40px;
+}
+
+.our-offices__registered h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 16px;
+}
+
+.our-offices__registered-placeholder {
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 24px 16px;
+  font-size: 0.85rem;
+  color: #93a6b5;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.our-offices__list {
+  flex: 1;
+  min-width: 0;
+}
+
+.our-offices__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+}
+
+.our-offices__header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+.our-offices__toggle {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.our-offices__toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.our-offices__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 24px;
+}
+
+.office-card__pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #cdd7de;
+  margin-bottom: 12px;
+}
+
+.office-card h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 6px;
+}
+
+.office-card p {
+  font-size: 0.85rem;
+  color: #93a6b5;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .our-offices {
+    flex-direction: column;
+    padding: 40px 24px;
+  }
+
+  .our-offices__registered {
+    flex-basis: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-right: 0;
+    padding-bottom: 32px;
+  }
+
+  .our-offices__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .our-offices__grid {
+    grid-template-columns: 1fr;
+  }
+}
