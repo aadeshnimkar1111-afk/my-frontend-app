@@ -63,9 +63,9 @@
 
 .legal-consult__content {
   position: relative;
-  flex: 1;
+  flex: 0 1 480px;
   min-width: 0;
-  padding-left: 48px;
+  margin-left: auto;
 }
 
 .legal-consult__content h2 {
@@ -123,7 +123,8 @@
   }
 
   .legal-consult__content {
-    padding-left: 0;
+    flex-basis: auto;
+    margin-left: 0;
   }
 
   .legal-consult__content h2 {
