@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Building2,
   ChevronLeft,
@@ -23,6 +23,7 @@ const MAX_INDEX = TESTIMONIAL_VIDEOS.length - VISIBLE_COUNT
 function TrackRecordTestimonials() {
   const [selectedStats, setSelectedStats] = useState([])
   const [videoIndex, setVideoIndex] = useState(0)
+  const timerRef = useRef(null)
 
   function toggleStat(id) {
     setSelectedStats((prev) =>
@@ -31,7 +32,22 @@ function TrackRecordTestimonials() {
   }
 
   function goToVideo(index) {
-    setVideoIndex(Math.max(0, Math.min(index, MAX_INDEX)))
+    setVideoIndex(((index % (MAX_INDEX + 1)) + (MAX_INDEX + 1)) % (MAX_INDEX + 1))
+  }
+
+  useEffect(() => {
+    timerRef.current = setInterval(() => {
+      setVideoIndex((i) => (i + 1) % (MAX_INDEX + 1))
+    }, 4000)
+    return () => clearInterval(timerRef.current)
+  }, [])
+
+  function handleManualVideoNav(index) {
+    clearInterval(timerRef.current)
+    goToVideo(index)
+    timerRef.current = setInterval(() => {
+      setVideoIndex((i) => (i + 1) % (MAX_INDEX + 1))
+    }, 4000)
   }
 
   const visibleVideos = TESTIMONIAL_VIDEOS.slice(videoIndex, videoIndex + VISIBLE_COUNT)
@@ -76,7 +92,7 @@ function TrackRecordTestimonials() {
           <button
             className="track-record__arrow"
             aria-label="Previous testimonials"
-            onClick={() => goToVideo(videoIndex - 1)}
+            onClick={() => handleManualVideoNav(videoIndex - 1)}
           >
             <ChevronLeft size={18} />
           </button>
@@ -101,7 +117,7 @@ function TrackRecordTestimonials() {
           <button
             className="track-record__arrow"
             aria-label="Next testimonials"
-            onClick={() => goToVideo(videoIndex + 1)}
+            onClick={() => handleManualVideoNav(videoIndex + 1)}
           >
             <ChevronRight size={18} />
           </button>
@@ -113,7 +129,7 @@ function TrackRecordTestimonials() {
               key={video.id}
               className={`track-record__dot ${i >= videoIndex && i < videoIndex + VISIBLE_COUNT ? 'is-active' : ''}`}
               aria-label={`Show testimonial ${i + 1}`}
-              onClick={() => goToVideo(i)}
+              onClick={() => handleManualVideoNav(i)}
             />
           ))}
         </div>
