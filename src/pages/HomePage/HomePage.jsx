@@ -11,6 +11,7 @@ import TrendingLocalities from '../../components/TrendingLocalities/TrendingLoca
 import BookOnlineVisit from '../../components/BookOnlineVisit/BookOnlineVisit'
 import ReviewsSignup from '../../components/ReviewsSignup/ReviewsSignup'
 import TrackRecordTestimonials from '../../components/TrackRecordTestimonials/TrackRecordTestimonials'
+import PropertyTypes from '../../components/PropertyTypes/PropertyTypes'
 import MediaCoverage from '../../components/MediaCoverage/MediaCoverage'
 import Footer from '../../components/Footer/Footer'
 
@@ -31,6 +32,7 @@ function HomePage() {
       <PossessionTimeline />
       <ReviewsSignup />
       <TrackRecordTestimonials />
+      <PropertyTypes />
       <Footer />
     </>
   )
