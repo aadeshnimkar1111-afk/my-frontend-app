@@ -1,0 +1,127 @@
+.book-visit {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #dfe9f2 0%, #eef3f8 70%, #eef3f8 100%);
+}
+
+.book-visit-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.book-visit__card {
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transform: translateY(-50%);
+  width: 520px;
+  max-width: calc(100% - 80px);
+  background: #16213e;
+  border-radius: 14px;
+  padding: 26px 28px;
+  box-shadow: 0 20px 40px rgba(22, 33, 62, 0.25);
+}
+
+.book-visit__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.book-visit__card-top h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+}
+
+.book-visit__badge {
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.book-visit__search-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 6px 6px 20px;
+}
+
+.book-visit__search-bar input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  background: #fff;
+  color: #222;
+}
+
+.book-visit__book-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 999px;
+  background: #0f9d58;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.book-visit__book-btn:hover {
+  background: #0c8047;
+}
+
+@media (max-width: 900px) {
+  .book-visit {
+    height: auto;
+    padding: 24px 20px;
+  }
+
+  .book-visit-scene {
+    position: static;
+    height: 180px;
+    margin-bottom: 16px;
+  }
+
+  .book-visit__card {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-visit__search-bar {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 16px;
+    padding: 14px;
+    gap: 10px;
+  }
+
+  .book-visit__search-bar input {
+    padding: 8px 4px;
+  }
+
+  .book-visit__book-btn {
+    justify-content: center;
+  }
+}

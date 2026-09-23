@@ -24,7 +24,7 @@ function minDateTime() {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`
 }
 
-function SchedulePresentationModal({ initialQuery = '', onClose }) {
+function SchedulePresentationModal({ initialQuery = '', title = 'Online Presentation', onClose }) {
   const [query, setQuery] = useState(initialQuery)
   const [dateTime, setDateTime] = useState(defaultDateTime())
   const [platform, setPlatform] = useState('google-meet')
@@ -60,7 +60,7 @@ function SchedulePresentationModal({ initialQuery = '', onClose }) {
         {!booked ? (
           <>
             <div className="presentation-modal__header">
-              <h3>Online Presentation</h3>
+              <h3>{title}</h3>
             </div>
 
             <div className="presentation-modal__body">
