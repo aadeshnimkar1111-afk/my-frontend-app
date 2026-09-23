@@ -12,6 +12,7 @@ import BookOnlineVisit from '../../components/BookOnlineVisit/BookOnlineVisit'
 import ReviewsSignup from '../../components/ReviewsSignup/ReviewsSignup'
 import TrackRecordTestimonials from '../../components/TrackRecordTestimonials/TrackRecordTestimonials'
 import PropertyTypes from '../../components/PropertyTypes/PropertyTypes'
+import LegalConsultation from '../../components/LegalConsultation/LegalConsultation'
 import MediaCoverage from '../../components/MediaCoverage/MediaCoverage'
 import Footer from '../../components/Footer/Footer'
 
@@ -33,6 +34,7 @@ function HomePage() {
       <ReviewsSignup />
       <TrackRecordTestimonials />
       <PropertyTypes />
+      <LegalConsultation />
       <Footer />
     </>
   )

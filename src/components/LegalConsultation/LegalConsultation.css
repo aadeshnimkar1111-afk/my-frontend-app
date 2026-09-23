@@ -1,0 +1,131 @@
+.legal-consult {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 64px 48px;
+  min-height: 440px;
+  overflow: hidden;
+  background: linear-gradient(100deg, #16213e 0%, #2c5a72 45%, #0f9d58 100%);
+}
+
+.legal-consult__dots {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.legal-consult__dots span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.legal-consult__visual {
+  position: relative;
+  flex: 0 0 420px;
+  max-width: 420px;
+}
+
+.legal-scene {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.legal-consult__badge {
+  position: absolute;
+  z-index: 2;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  color: #0f9d58;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.legal-consult__badge--scale {
+  top: 25%;
+  left: 8%;
+}
+
+.legal-consult__badge--bank {
+  top: 8%;
+  left: 32%;
+}
+
+.legal-consult__content {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.legal-consult__content h2 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 14px;
+  line-height: 1.3;
+}
+
+.legal-consult__content p {
+  font-size: 0.95rem;
+  color: #dfe6ee;
+  margin: 0 0 24px;
+  max-width: 560px;
+}
+
+.legal-consult__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.legal-consult__cta {
+  padding: 13px 28px;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  color: #0f9d58;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.legal-consult__cta:hover {
+  background: #eef8f1;
+}
+
+.legal-consult__free {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .legal-consult {
+    flex-direction: column;
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .legal-consult__visual {
+    flex-basis: auto;
+    max-width: 260px;
+  }
+
+  .legal-consult__content p {
+    max-width: none;
+  }
+
+  .legal-consult__actions {
+    justify-content: center;
+  }
+}
