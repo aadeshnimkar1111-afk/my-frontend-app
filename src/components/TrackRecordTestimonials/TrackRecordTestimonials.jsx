@@ -38,7 +38,7 @@ function TrackRecordTestimonials() {
   useEffect(() => {
     timerRef.current = setInterval(() => {
       setVideoIndex((i) => (i + 1) % (MAX_INDEX + 1))
-    }, 4000)
+    }, 3000)
     return () => clearInterval(timerRef.current)
   }, [])
 
@@ -47,7 +47,7 @@ function TrackRecordTestimonials() {
     goToVideo(index)
     timerRef.current = setInterval(() => {
       setVideoIndex((i) => (i + 1) % (MAX_INDEX + 1))
-    }, 4000)
+    }, 3000)
   }
 
   const visibleVideos = TESTIMONIAL_VIDEOS.slice(videoIndex, videoIndex + VISIBLE_COUNT)
