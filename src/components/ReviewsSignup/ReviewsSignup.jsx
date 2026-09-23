@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, FileText, Star } from 'lucide-react'
 import { REVIEWS } from '../../data/reviews'
 import SignUpModal from './SignUpModal'
-import FamilyArt from './FamilyArt'
 import './ReviewsSignup.css'
 
 const AVATAR_COLORS = ['#0f9d58', '#16213e', '#c9931a', '#2b6cb0', '#a1417a', '#0e7c66']
@@ -148,13 +147,13 @@ function ReviewsSignup() {
           type="tel"
           placeholder="Enter your mobile number"
           value={phone}
+          onFocus={() => setModalOpen(true)}
           onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
         />
         <button className="reviews-signup__signup-btn" onClick={() => setModalOpen(true)}>
           Sign Up
         </button>
 
-        <FamilyArt />
       </div>
 
       {modalOpen && <SignUpModal initialPhone={phone} onClose={() => setModalOpen(false)} />}

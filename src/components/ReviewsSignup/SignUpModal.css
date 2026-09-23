@@ -130,6 +130,14 @@
   cursor: pointer;
 }
 
+.flag-icon {
+  width: 20px;
+  height: 15px;
+  border-radius: 2px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 .signup-modal__phone input {
   flex: 1;
   min-width: 0;

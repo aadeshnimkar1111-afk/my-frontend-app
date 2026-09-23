@@ -185,9 +185,3 @@ export const COUNTRIES = [
   { name: 'Zambia', code: 'ZM', dial: '260' },
   { name: 'Zimbabwe', code: 'ZW', dial: '263' },
 ]
-
-export function flagEmoji(code) {
-  return code
-    .toUpperCase()
-    .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)))
-}

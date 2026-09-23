@@ -1,9 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { ChevronDown, Zap, X } from 'lucide-react'
-import { COUNTRIES, flagEmoji } from '../../data/countries'
+import { COUNTRIES } from '../../data/countries'
 import './SignUpModal.css'
 
 const DEFAULT_COUNTRY = COUNTRIES.find((c) => c.code === 'IN')
+
+function FlagIcon({ code }) {
+  return (
+    <img
+      className="flag-icon"
+      src={`https://flagcdn.com/24x18/${code.toLowerCase()}.png`}
+      alt=""
+    />
+  )
+}
 
 function SignUpModal({ initialPhone = '', onClose }) {
   const [phone, setPhone] = useState(initialPhone)
@@ -69,7 +79,8 @@ function SignUpModal({ initialPhone = '', onClose }) {
                   className="signup-modal__code"
                   onClick={() => setCountryOpen((o) => !o)}
                 >
-                  {flagEmoji(country.code)} +{country.dial}
+                  <FlagIcon code={country.code} />
+                  +{country.dial}
                   <ChevronDown size={14} />
                 </button>
                 <input
@@ -92,7 +103,7 @@ function SignUpModal({ initialPhone = '', onClose }) {
                           setCountryOpen(false)
                         }}
                       >
-                        <span>{flagEmoji(c.code)}</span>
+                        <FlagIcon code={c.code} />
                         {c.name}
                       </button>
                     ))}

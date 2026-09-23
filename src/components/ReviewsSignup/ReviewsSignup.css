@@ -252,12 +252,6 @@
   background: #eef8f1;
 }
 
-.family-art {
-  width: 100%;
-  max-width: 380px;
-  margin-top: auto;
-  padding-top: 40px;
-}
 
 @media (max-width: 900px) {
   .reviews-signup {
