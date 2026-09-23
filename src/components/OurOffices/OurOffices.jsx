@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Minus, MapPin, Plus } from 'lucide-react'
 import { OFFICES } from '../../data/offices'
+import { FacebookIcon, InstagramIcon, LinkedinIcon } from './SocialIcons'
 import './OurOffices.css'
 
 function OurOffices() {
@@ -11,6 +12,18 @@ function OurOffices() {
       <div className="our-offices__registered">
         <h3>Registered &amp; Corporate Office</h3>
         <div className="our-offices__registered-placeholder">Address coming soon</div>
+
+        <div className="our-offices__social">
+          <a href="/" aria-label="Facebook">
+            <FacebookIcon />
+          </a>
+          <a href="/" aria-label="Instagram">
+            <InstagramIcon />
+          </a>
+          <a href="/" aria-label="LinkedIn">
+            <LinkedinIcon />
+          </a>
+        </div>
       </div>
 
       <div className="our-offices__list">

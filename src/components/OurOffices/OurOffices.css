@@ -1,7 +1,8 @@
 .our-offices {
   display: flex;
   gap: 48px;
-  padding: 48px 40px;
+  padding: 80px 40px;
+  min-height: 460px;
   background: #234b63;
   color: #cdd7de;
 }
@@ -27,6 +28,27 @@
   color: #93a6b5;
   text-align: center;
   margin-bottom: 20px;
+}
+
+.our-offices__social {
+  display: flex;
+  gap: 12px;
+}
+
+.our-offices__social a {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.our-offices__social a:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .our-offices__list {
