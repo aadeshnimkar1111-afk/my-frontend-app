@@ -4,6 +4,13 @@ import { OFFICES } from '../../data/offices'
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from './SocialIcons'
 import './OurOffices.css'
 
+const SOCIAL_LINKS = {
+  facebook:
+    'https://www.facebook.com/people/Mdn-Sales-Force/pfbid0241p5VcCLfkotFBiUtnQzQ4cT5bBwiWGgWLQiF4u3UY57TBUnrrpdVWPho2rz3zgSl/',
+  instagram: 'https://www.instagram.com/mdn_salesforce_/',
+  linkedin: 'https://www.linkedin.com/company/mdn-salesforce/',
+}
+
 function OurOffices() {
   const [expanded, setExpanded] = useState(true)
 
@@ -14,13 +21,13 @@ function OurOffices() {
         <div className="our-offices__registered-placeholder">Address coming soon</div>
 
         <div className="our-offices__social">
-          <a href="/" aria-label="Facebook">
+          <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="Facebook">
             <FacebookIcon />
           </a>
-          <a href="/" aria-label="Instagram">
+          <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">
             <InstagramIcon />
           </a>
-          <a href="/" aria-label="LinkedIn">
+          <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
             <LinkedinIcon />
           </a>
         </div>
