@@ -1,0 +1,241 @@
+.track-record {
+  display: flex;
+  min-height: 560px;
+}
+
+.track-record__left,
+.track-record__right {
+  flex: 1;
+  min-width: 0;
+  padding: 56px 48px;
+}
+
+.track-record__left {
+  background: linear-gradient(135deg, #16213e 0%, #0f9d58 100%);
+  color: #fff;
+}
+
+.track-record__right {
+  background: #fff;
+}
+
+.track-record__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4ade80;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+
+.track-record__right .track-record__eyebrow {
+  color: #0f9d58;
+}
+
+.track-record__left h2,
+.track-record__right h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 24px;
+}
+
+.track-record__right h2 {
+  color: #16213e;
+  margin-bottom: 8px;
+}
+
+.track-record__subtitle {
+  font-size: 1rem;
+  color: #777;
+  margin: 0 0 28px;
+}
+
+.track-record__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 520px;
+}
+
+.track-record__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 22px 18px;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+.track-record__stat strong {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.track-record__stat span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.track-record__stat.is-active {
+  background: #fff;
+  color: #16213e;
+}
+
+.track-record__stat.is-active span {
+  color: #555;
+}
+
+.track-record__video-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.track-record__arrow {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #e3f5e9;
+  color: #0f9d58;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.track-record__arrow:hover {
+  background: #d5f0e0;
+}
+
+.track-record__video-grid {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.testimonial-card {
+  position: relative;
+  height: 150px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #2c3e60 0%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.testimonial-card__brand {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 5px;
+  letter-spacing: 0.04em;
+}
+
+.testimonial-card__play {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ff4757;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-card__avatar {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  color: #16213e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-card__caption {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.track-record__dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 20px;
+  padding-left: 48px;
+}
+
+.track-record__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: none;
+  background: #d9dee5;
+  cursor: pointer;
+  padding: 0;
+}
+
+.track-record__dot.is-active {
+  background: #0f9d58;
+}
+
+@media (max-width: 900px) {
+  .track-record {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .track-record__left,
+  .track-record__right {
+    padding: 40px 24px;
+  }
+
+  .track-record__grid {
+    max-width: none;
+  }
+
+  .track-record__dots {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .track-record__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .track-record__video-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .track-record__arrow {
+    display: none;
+  }
+}

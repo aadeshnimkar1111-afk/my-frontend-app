@@ -10,6 +10,7 @@ import OnlineProjectPresentation from '../../components/OnlineProjectPresentatio
 import TrendingLocalities from '../../components/TrendingLocalities/TrendingLocalities'
 import BookOnlineVisit from '../../components/BookOnlineVisit/BookOnlineVisit'
 import ReviewsSignup from '../../components/ReviewsSignup/ReviewsSignup'
+import TrackRecordTestimonials from '../../components/TrackRecordTestimonials/TrackRecordTestimonials'
 import MediaCoverage from '../../components/MediaCoverage/MediaCoverage'
 import Footer from '../../components/Footer/Footer'
 
@@ -29,6 +30,7 @@ function HomePage() {
       <OnlineProjectPresentation />
       <PossessionTimeline />
       <ReviewsSignup />
+      <TrackRecordTestimonials />
       <Footer />
     </>
   )
