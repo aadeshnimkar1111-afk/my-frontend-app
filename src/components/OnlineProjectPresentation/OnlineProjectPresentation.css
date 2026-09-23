@@ -1,6 +1,6 @@
 .project-presentation {
   position: relative;
-  padding: 64px 40px;
+  padding: 110px 40px;
   background: linear-gradient(135deg, #16213e 0%, #1e2c52 60%, #0f9d58 130%);
   overflow: hidden;
 }
@@ -80,7 +80,7 @@
 
 @media (max-width: 700px) {
   .project-presentation {
-    padding: 48px 20px;
+    padding: 64px 20px;
   }
 
   .project-presentation__title {
